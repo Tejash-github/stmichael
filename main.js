@@ -156,21 +156,76 @@ document.addEventListener('DOMContentLoaded', async () => {
     const items = (data?.items) || DEFAULTS.news;
     if (items.length > 0) {
       newsTicker.innerHTML = items.map((item, i) => `
-        <div class="news-item ${i === 0 ? 'active' : ''}">
-          <span class="news-dot"></span>
-          <span>${item.text}</span>
+        <div class="news-item" data-index="${i}">
+          <div class="news-content">${item.text}</div>
+          <div class="news-item-footer">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Read More</span>
+          </div>
         </div>
       `).join('');
-      // Restart ticker
-      const newsItems = newsTicker.querySelectorAll('.news-item');
-      if (newsItems.length > 1) {
-        let newsIdx = 0;
-        setInterval(() => {
-          newsItems[newsIdx].classList.remove('active');
-          newsIdx = (newsIdx + 1) % newsItems.length;
-          newsItems[newsIdx].classList.add('active');
-        }, 4000);
-      }
+
+      // Add click listeners to open each news item in a modal popup
+      newsTicker.querySelectorAll('.news-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const idx = parseInt(el.getAttribute('data-index'));
+          const item = items[idx];
+          showNewsModal(item.text);
+        });
+      });
+    }
+  }
+
+  // Helper to dynamically show news popup modal
+  function showNewsModal(text) {
+    // Check if modal container already exists, otherwise create it
+    let overlay = document.getElementById('newsPopupModal');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'newsPopupModal';
+      overlay.className = 'news-modal-overlay';
+      overlay.innerHTML = `
+        <div class="news-modal-card">
+          <button class="news-modal-close" aria-label="Close modal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+          <div class="news-modal-header">
+            <span class="news-modal-badge">Circular</span>
+            <h3 class="news-modal-title">News Update</h3>
+          </div>
+          <div class="news-modal-body" id="newsModalBody"></div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      // Event listener to close modal
+      const closeBtn = overlay.querySelector('.news-modal-close');
+      closeBtn.addEventListener('click', closeNewsModal);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeNewsModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeNewsModal();
+      });
+    }
+
+    // Set text and open modal
+    document.getElementById('newsModalBody').textContent = text;
+    overlay.style.display = 'flex'; // Ensure display is flex
+    // Trigger transition Reflow
+    overlay.offsetHeight;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Stop scrolling behind modal
+  }
+
+  function closeNewsModal() {
+    const overlay = document.getElementById('newsPopupModal');
+    if (overlay) {
+      overlay.classList.remove('open');
+      document.body.style.overflow = ''; // Restore scrolling
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 400); // Wait for transition-slow (400ms)
     }
   }
 
