@@ -275,12 +275,20 @@ select {
 .logo-circle {
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, var(--navy-800), var(--navy-600));
+  background: #fff;
   border-radius: var(--radius-full);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.logo-circle img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
 }
 
 .logo-text {
