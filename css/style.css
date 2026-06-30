@@ -118,6 +118,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -2304,6 +2305,10 @@ select {
   }
 
   .content-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .about-features {
     grid-template-columns: 1fr;
   }
 }
