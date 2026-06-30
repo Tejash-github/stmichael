@@ -92,18 +92,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // ── AOS ───────────────────────────────────────────────────
-  const aosElements = document.querySelectorAll('[data-aos]');
-  if (aosElements.length > 0) {
-    const aosObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('aos-animate');
-          aosObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-    aosElements.forEach(el => aosObserver.observe(el));
-  }
+  const aosObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('aos-animate');
+        aosObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+  window.aosObserver = aosObserver;
+  document.querySelectorAll('[data-aos]').forEach(el => aosObserver.observe(el));
 
   // ── Footer year ───────────────────────────────────────────
   const yearEl = document.getElementById('currentYear');
@@ -181,7 +179,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (admissionCard) {
     const data = await getData('admission');
     const d = data || DEFAULTS.admission;
-    const titleEl = admissionCard.querySelector('.admission-notice-title');
+    const titleEl = document.getElementById('admissionCard-title') || admissionCard.querySelector('.admission-notice-title');
     const listEl = admissionCard.querySelector('.doc-list');
     if (titleEl) titleEl.textContent = d.title || DEFAULTS.admission.title;
     if (listEl && d.documents) {
@@ -207,7 +205,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     const c = data || DEFAULTS.contact;
     contactEls.forEach(el => {
       const key = el.getAttribute('data-contact');
-      if (c[key]) el.textContent = c[key];
+      if (c[key]) {
+        el.textContent = c[key];
+        const linkEl = el.closest('a');
+        if (linkEl) {
+          if (key === 'phone' || key === 'principal' || key === 'juniorSection' || key === 'seniorSection') {
+            linkEl.href = `tel:${c[key].replace(/\s+/g, '')}`;
+          } else if (key === 'email' || key === 'adminEmail') {
+            linkEl.href = `mailto:${c[key]}`;
+          }
+        }
+      }
     });
   }
 
@@ -225,7 +233,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     `).join('');
     // Re-observe new AOS elements
     toppersGrid.querySelectorAll('[data-aos]').forEach(el => {
-      if (aosElements.length > 0) aosElements[0].__aosObserver?.observe(el);
+      window.aosObserver?.observe(el);
     });
   }
 
@@ -280,6 +288,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         ${f.designation ? `<p style="font-size:0.75rem;color:#9ca3af;margin-top:0.25rem;">${f.designation}</p>` : ''}
       </div>
     `).join('');
+    // Re-observe new AOS elements
+    facultyGrid.querySelectorAll('[data-aos]').forEach(el => {
+      window.aosObserver?.observe(el);
+    });
   }
 
   // ── Load Principal Message ────────────────────────────────

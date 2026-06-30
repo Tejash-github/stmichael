@@ -91,7 +91,13 @@ async function loadAllData() {
   const sections = ['news','admission','toppers','gallery','hours','contact','faculty','principal'];
   for (const section of sections) {
     const data = await getData(section);
-    state[section] = data || DEFAULTS[section];
+    if (data && data.items && Array.isArray(data.items)) {
+      state[section] = data.items;
+    } else if (data) {
+      state[section] = data;
+    } else {
+      state[section] = DEFAULTS[section];
+    }
   }
 }
 
@@ -151,7 +157,11 @@ function toast(message, type = 'success') {
 async function saveSection(section, data) {
   try {
     await setData(section, data);
-    state[section] = data;
+    if (data && data.items && Array.isArray(data.items)) {
+      state[section] = data.items;
+    } else {
+      state[section] = data;
+    }
     toast(`${section.charAt(0).toUpperCase() + section.slice(1)} saved successfully!`, 'success');
   } catch (err) {
     toast(`Save failed: ${err.message}`, 'error');
