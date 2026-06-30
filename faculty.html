@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,11 +20,11 @@
         <div class="topbar-contacts">
           <span class="topbar-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.55 11a19.79 19.79 0 01-3.07-8.67A2 2 0 013.46 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            +91-6344-241029
+            <span data-contact="phone">+91-6344-241029</span>
           </span>
           <span class="topbar-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            info@stmichaeljamalpur.org
+            <span data-contact="email">info@stmichaeljamalpur.org</span>
           </span>
         </div>
         <div class="topbar-motto">
@@ -100,7 +100,7 @@
                  onerror="this.outerHTML='<div style=\'width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#0f2040,#1e3a70);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-family:serif;font-size:2.5rem;font-weight:700;color:white;\'>XM</div>'">
             <h3 style="font-family:\'Playfair Display\',serif;font-size:1.5rem;color:#0f2040;margin-bottom:0.25rem;">Xavier Chandan Michael</h3>
             <p class="faculty-dept">Principal</p>
-            <p style="font-size:0.875rem;color:#6b7280;margin-top:0.75rem;">Contact: 9431454365 (10 AM–1 PM, working days)</p>
+            <p style="font-size:0.875rem;color:#6b7280;margin-top:0.75rem;">Contact: <span data-contact="principal">9431454365</span> (10 AM–1 PM, working days)</p>
           </div>
         </div>
 
@@ -109,7 +109,7 @@
           <span class="section-badge">Teaching Staff</span>
           <h2 class="section-title">Our Teachers</h2>
         </div>
-        <div class="faculty-grid">
+        <div class="faculty-grid" id="facultyGrid">
           <!-- Faculty members (representative entries — school can update) -->
           <div class="faculty-card" data-aos="fadeUp">
             <div class="faculty-photo">M</div>
@@ -228,9 +228,9 @@
         <div class="footer-col">
           <h3 class="footer-heading">Contact</h3>
           <div class="footer-contact">
-            <p><strong>Phone/Fax:</strong> +91-6344-241029</p>
-            <p><strong>Principal:</strong> 9431454365</p>
-            <p><strong>Email:</strong> info@stmichaeljamalpur.org</p>
+            <p><strong>Phone/Fax:</strong> <span data-contact="phone">+91-6344-241029</span></p>
+            <p><strong>Principal:</strong> <span data-contact="principal">9431454365</span></p>
+            <p><strong>Email:</strong> <span data-contact="email">info@stmichaeljamalpur.org</span></p>
           </div>
         </div>
         <div class="footer-col">
@@ -246,6 +246,9 @@
       </div>
     </div>
   </footer>
-  <script src="js/main.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

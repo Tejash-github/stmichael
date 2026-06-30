@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,11 +20,11 @@
         <div class="topbar-contacts">
           <span class="topbar-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.55 11a19.79 19.79 0 01-3.07-8.67A2 2 0 013.46 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            +91-6344-241029
+            <span data-contact="phone">+91-6344-241029</span>
           </span>
           <span class="topbar-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            info@stmichaeljamalpur.org
+            <span data-contact="email">info@stmichaeljamalpur.org</span>
           </span>
         </div>
         <div class="topbar-motto">
@@ -90,7 +90,7 @@
           <span class="section-badge">Leadership</span>
           <h2 class="section-title">From the Principal's Desk</h2>
         </div>
-        <div class="principal-grid">
+        <div class="principal-grid" id="principalSection">
           <div class="principal-card" data-aos="fadeRight">
             <img src="https://stmichaeljamalpur.org/images/chandm.jpg" 
                  alt="Xavier Chandan Michael, Principal" 
@@ -100,17 +100,19 @@
             <p class="principal-title">Principal, St. Michael's High School</p>
             <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
               <p style="font-size: 0.75rem; color: #6b7280;">Contact (Working Days)</p>
-              <p style="font-size: 0.875rem; font-weight: 600; color: #0f2040;">9431454365</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: #0f2040;"><span data-contact="principal">9431454365</span></p>
               <p style="font-size: 0.75rem; color: #6b7280;">10:00 AM – 1:00 PM only</p>
             </div>
           </div>
           <div class="principal-message" data-aos="fadeLeft">
-            <h2>NEP 2020 Will Bring the Desired Changes in Education</h2>
+            <h2 class="principal-msg-title">NEP 2020 Will Bring the Desired Changes in Education</h2>
             <p class="message-subtitle">A Message from Our Principal</p>
-            <p>Revolution is a much-needed impetus for the growth of the human society. Reforms are needed in each and every field especially in the field of education. The latest revolution in the system of Indian education has come with the origin of <strong>National Education Policy (NEP) 2020</strong>.</p>
-            <p>Learning is the process whereby knowledge is created through the transformation of experience. The NEP 2020 focuses on <strong>experiential learning, equity and discovery-based teaching</strong> learning methods. Toys are a vital component of learning. Implementing the NEP, the students are taught in an interactive manner with the use of toys.</p>
-            <p>Under the guidance of the NEP, the schools will focus on skill-enhancement of the students. Efforts will be made to eliminate rote-learning and emphasis will be laid on experiential learning, including <strong>critical thinking, problem-solving, creativity and digital literacy</strong>. Integration of technology will be done to improve classroom processes and schools will achieve their academic goals with ICT classrooms.</p>
-            <p>Eventually, we are gearing up for implementing the vision of the NEP, which came after 34 years. The NEP will certainly encompass the needs of the students making them skilful learners who are competent to face real time challenges. Schools must train the faculty and provide inclusive curriculum to promote inclusion and equity in education for the holistic development of the students. The NEP is going to benefit the new generation for dominating the global education and help bring about the revolution for a new India.</p>
+            <div class="principal-msg-body">
+              <p>Revolution is a much-needed impetus for the growth of the human society. Reforms are needed in each and every field especially in the field of education. The latest revolution in the system of Indian education has come with the origin of <strong>National Education Policy (NEP) 2020</strong>.</p>
+              <p>Learning is the process whereby knowledge is created through the transformation of experience. The NEP 2020 focuses on <strong>experiential learning, equity and discovery-based teaching</strong> learning methods. Toys are a vital component of learning. Implementing the NEP, the students are taught in an interactive manner with the use of toys.</p>
+              <p>Under the guidance of the NEP, the schools will focus on skill-enhancement of the students. Efforts will be made to eliminate rote-learning and emphasis will be laid on experiential learning, including <strong>critical thinking, problem-solving, creativity and digital literacy</strong>. Integration of technology will be done to improve classroom processes and schools will achieve their academic goals with ICT classrooms.</p>
+              <p>Eventually, we are gearing up for implementing the vision of the NEP, which came after 34 years. The NEP will certainly encompass the needs of the students making them skilful learners who are competent to face real time challenges. Schools must train the faculty and provide inclusive curriculum to promote inclusion and equity in education for the holistic development of the students. The NEP is going to benefit the new generation for dominating the global education and help bring about the revolution for a new India.</p>
+            </div>
             <p class="message-sign">Happy Learning! — Xavier Chandan Michael, Principal</p>
           </div>
         </div>
@@ -243,11 +245,11 @@
         <div class="footer-col">
           <h3 class="footer-heading">Contact</h3>
           <div class="footer-contact">
-            <p><strong>Phone/Fax:</strong> +91-6344-241029</p>
-            <p><strong>Principal:</strong> 9431454365</p>
-            <p><strong>Junior Section:</strong> 7667390821</p>
-            <p><strong>Senior Section:</strong> 9065757950</p>
-            <p><strong>Email:</strong> info@stmichaeljamalpur.org</p>
+            <p><strong>Phone/Fax:</strong> <span data-contact="phone">+91-6344-241029</span></p>
+            <p><strong>Principal:</strong> <span data-contact="principal">9431454365</span></p>
+            <p><strong>Junior Section:</strong> <span data-contact="juniorSection">7667390821</span></p>
+            <p><strong>Senior Section:</strong> <span data-contact="seniorSection">9065757950</span></p>
+            <p><strong>Email:</strong> <span data-contact="email">info@stmichaeljamalpur.org</span></p>
           </div>
         </div>
         <div class="footer-col">
@@ -263,6 +265,9 @@
       </div>
     </div>
   </footer>
-  <script src="js/main.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

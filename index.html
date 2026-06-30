@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -21,11 +21,11 @@
         <div class="topbar-contacts">
           <span class="topbar-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.55 11a19.79 19.79 0 01-3.07-8.67A2 2 0 013.46 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            +91-6344-241029
+            <span data-contact="phone">+91-6344-241029</span>
           </span>
           <span class="topbar-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            info@stmichaeljamalpur.org
+            <span data-contact="email">info@stmichaeljamalpur.org</span>
           </span>
         </div>
         <div class="topbar-motto">
@@ -169,9 +169,9 @@
               <div class="info-card-icon">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6zM22 11V1l-5 4-5-4-5 4-5-4v10"/></svg>
               </div>
-              <h2 class="info-card-title">Admission 2026–27</h2>
+              <h2 class="info-card-title" id="admissionCard-title">Admission 2026–27</h2>
             </div>
-            <div class="info-card-body">
+            <div class="info-card-body" id="admissionCard">
               <p class="admission-label">Documents Required</p>
               <ol class="doc-list">
                 <li>Birth Certificate (Municipal Corporation or equivalent)</li>
@@ -185,6 +185,7 @@
               </ol>
             </div>
           </div>
+
 
           <!-- News & Circulars -->
           <div class="info-card card-purple" data-aos="fadeUp" data-aos-delay="100">
@@ -210,11 +211,11 @@
                 </div>
                 <div class="news-item">
                   <span class="news-dot"></span>
-                  <span><strong>PRINCIPAL</strong> can be contacted at 9431454365 only between 10:00 AM to 1:00 PM on working days.</span>
+                  <span><strong>PRINCIPAL</strong> can be contacted at <span data-contact="principal">9431454365</span> only between 10:00 AM to 1:00 PM on working days.</span>
                 </div>
                 <div class="news-item">
                   <span class="news-dot"></span>
-                  <span>Send email at: <strong>info@stmichaeljamalpur.org</strong></span>
+                  <span>Send email at: <strong><span data-contact="email">info@stmichaeljamalpur.org</span></strong></span>
                 </div>
               </div>
             </div>
@@ -342,11 +343,11 @@
             <div class="hours-list">
               <div class="hours-row">
                 <span>Mon–Fri</span>
-                <span>7:45 AM – 1:40 PM</span>
+                <span data-hours="regularWeekday">7:45 AM – 1:40 PM</span>
               </div>
               <div class="hours-row">
                 <span>Saturday</span>
-                <span>7:45 AM – 10:35 AM</span>
+                <span data-hours="regularSaturday">7:45 AM – 10:35 AM</span>
               </div>
             </div>
           </div>
@@ -358,11 +359,11 @@
             <div class="hours-list">
               <div class="hours-row">
                 <span>Mon–Fri</span>
-                <span>6:45 AM – 12:00 PM</span>
+                <span data-hours="summerWeekday">6:45 AM – 12:00 PM</span>
               </div>
               <div class="hours-row">
                 <span>Saturday</span>
-                <span>6:45 AM – 9:30 AM</span>
+                <span data-hours="summerSaturday">6:45 AM – 9:30 AM</span>
               </div>
             </div>
           </div>
@@ -374,11 +375,11 @@
             <div class="hours-list">
               <div class="hours-row">
                 <span>Mon–Fri</span>
-                <span>8:00 AM – 1:30 PM</span>
+                <span data-hours="officeWeekday">8:00 AM – 1:30 PM</span>
               </div>
               <div class="hours-row">
                 <span>Saturday</span>
-                <span>8:00 AM – 10:30 AM</span>
+                <span data-hours="officeSaturday">8:00 AM – 10:30 AM</span>
               </div>
             </div>
           </div>
@@ -456,15 +457,15 @@
             <div class="cta-contacts">
               <a href="tel:+916344241029" class="cta-contact-item" id="contact-phone">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.55 11a19.79 19.79 0 01-3.07-8.67A2 2 0 013.46 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                +91-6344-241029
+                <span data-contact="phone">+91-6344-241029</span>
               </a>
-              <a href="tel:9431454365" class="cta-contact-item" id="contact-principal">
+              <a href="tel:<span data-contact="principal">9431454365</span>" class="cta-contact-item" id="contact-principal">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.55 11a19.79 19.79 0 01-3.07-8.67A2 2 0 013.46 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                Principal: 9431454365
+                Principal: <span data-contact="principal">9431454365</span>
               </a>
-              <a href="mailto:info@stmichaeljamalpur.org" class="cta-contact-item" id="contact-email">
+              <a href="mailto:<span data-contact="email">info@stmichaeljamalpur.org</span>" class="cta-contact-item" id="contact-email">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                info@stmichaeljamalpur.org
+                <span data-contact="email">info@stmichaeljamalpur.org</span>
               </a>
               <div class="cta-contact-item">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -518,12 +519,12 @@
         <div class="footer-col">
           <h3 class="footer-heading">Contact</h3>
           <div class="footer-contact">
-            <p><strong>Phone/Fax:</strong> +91-6344-241029</p>
-            <p><strong>Principal:</strong> 9431454365</p>
-            <p><strong>Junior Section:</strong> 7667390821</p>
-            <p><strong>Senior Section:</strong> 9065757950</p>
-            <p><strong>Email:</strong> info@stmichaeljamalpur.org</p>
-            <p><strong>Admin:</strong> admin@stmichaeljamalpur.org</p>
+            <p><strong>Phone/Fax:</strong> <span data-contact="phone">+91-6344-241029</span></p>
+            <p><strong>Principal:</strong> <span data-contact="principal">9431454365</span></p>
+            <p><strong>Junior Section:</strong> <span data-contact="juniorSection">7667390821</span></p>
+            <p><strong>Senior Section:</strong> <span data-contact="seniorSection">9065757950</span></p>
+            <p><strong>Email:</strong> <span data-contact="email">info@stmichaeljamalpur.org</span></p>
+            <p><strong>Admin:</strong> <span data-contact="adminEmail">admin@stmichaeljamalpur.org</span></p>
           </div>
         </div>
         <div class="footer-col">
@@ -543,6 +544,9 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Portal — St. Michael's High School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     LOGIN SCREEN
+══════════════════════════════════════════════════════════ -->
+<div id="loginScreen" style="display:flex;">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <div class="login-logo-icon">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L20 10L29 11L22.5 17.5L24 27L16 23L8 27L9.5 17.5L3 11L12 10L16 2Z" fill="#B8860B" stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="login-logo-text">
+        <div class="title">St. Michael's High School</div>
+        <div class="subtitle">Admin Portal — Jamalpur</div>
+      </div>
+    </div>
+    <div class="login-card">
+      <h2>Welcome back</h2>
+      <p class="login-sub">Sign in to manage website content</p>
+      <div id="loginError" class="login-error">Incorrect username or password.</div>
+      <form id="loginForm" novalidate>
+        <div class="admin-form-group">
+          <label for="loginEmail">Email Address</label>
+          <input type="email" id="loginEmail" class="admin-input" placeholder="Enter email" autocomplete="email" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="loginPw">Password</label>
+          <div class="input-pw-wrap">
+            <input type="password" id="loginPw" class="admin-input" placeholder="Enter password" autocomplete="current-password" required style="padding-right:2.75rem;">
+            <button type="button" id="pwToggle" class="pw-toggle" aria-label="Toggle password visibility">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <button type="submit" id="loginBtn" class="btn-login">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+          Sign In
+        </button>
+      </form>
+    </div>
+    <p style="text-align:center;color:rgba(255,255,255,0.25);font-size:0.75rem;margin-top:1.5rem;">This portal is for authorized staff only.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     DASHBOARD
+══════════════════════════════════════════════════════════ -->
+<div id="dashboard">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-icon">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L20 10L29 11L22.5 17.5L24 27L16 23L8 27L9.5 17.5L3 11L12 10L16 2Z" fill="#B8860B"/>
+        </svg>
+      </div>
+      <div class="sidebar-brand-text">
+        <div class="name">St. Michael's</div>
+        <div class="role">Admin Portal</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Overview</div>
+      <button class="nav-item active" data-panel="dashboard">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+
+      <div class="sidebar-section-label" style="margin-top:0.75rem;">Content</div>
+      <button class="nav-item" data-panel="news">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        News &amp; Circulars
+      </button>
+      <button class="nav-item" data-panel="admission">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6z"/><path d="M22 11V1l-5 4-5-4-5 4-5-4v10"/></svg>
+        Admission Notice
+      </button>
+      <button class="nav-item" data-panel="toppers">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        School Toppers
+      </button>
+      <button class="nav-item" data-panel="gallery">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Gallery
+      </button>
+      <button class="nav-item" data-panel="faculty">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Faculty List
+      </button>
+      <button class="nav-item" data-panel="principal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Principal's Message
+      </button>
+
+      <div class="sidebar-section-label" style="margin-top:0.75rem;">Settings</div>
+      <button class="nav-item" data-panel="hours">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        School Hours
+      </button>
+      <button class="nav-item" data-panel="contact">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.55 11a19.79 19.79 0 01-3.07-8.67A2 2 0 013.46 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Contact Details
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="logoutBtn" class="btn-logout">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="admin-main">
+    <!-- Top bar -->
+    <div class="admin-topbar">
+      <h1 id="pageTitle">Dashboard</h1>
+      <span id="adminTime" class="topbar-meta"></span>
+      <span class="topbar-badge">St. Michael's Admin</span>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- ── DASHBOARD PANEL ─────────────────────────────── -->
+      <div id="panel-dashboard" class="admin-panel active" data-title="Dashboard">
+        <div class="panel-header">
+          <div>
+            <h2>Welcome, Administrator</h2>
+            <p>Manage all website content from here. Click a module in the sidebar to begin editing.</p>
+          </div>
+          <a href="index.html" target="_blank" class="btn-secondary" style="text-decoration:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            View Live Site
+          </a>
+        </div>
+
+        <!-- Summary cards -->
+        <div class="summary-grid">
+          <div class="summary-card">
+            <div class="summary-icon si-blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <div class="summary-num" id="dash-news-count">—</div>
+              <div class="summary-label">News Items</div>
+            </div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-icon si-gold">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <div>
+              <div class="summary-num" id="dash-gallery-count">—</div>
+              <div class="summary-label">Gallery Photos</div>
+            </div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-icon si-green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div>
+              <div class="summary-num" id="dash-toppers-count">—</div>
+              <div class="summary-label">School Toppers</div>
+            </div>
+          </div>
+          <div class="summary-card">
+            <div class="summary-icon si-purple">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <div>
+              <div class="summary-num" id="dash-faculty-count">—</div>
+              <div class="summary-label">Faculty Members</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="admin-card">
+          <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>Quick Actions</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.75rem;">
+            <button class="btn-primary" onclick="document.querySelector('[data-panel=news]').click()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add News Item
+            </button>
+            <button class="btn-primary" onclick="document.querySelector('[data-panel=gallery]').click()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Gallery Photo
+            </button>
+            <button class="btn-primary" onclick="document.querySelector('[data-panel=toppers]').click()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Update Toppers
+            </button>
+            <button class="btn-secondary" onclick="document.querySelector('[data-panel=admission]').click()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Edit Admission Notice
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>How It Works</h3>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+            <div style="padding:1rem;background:rgba(255,255,255,0.04);border-radius:0.5rem;border:1px solid rgba(255,255,255,0.06);">
+              <div style="color:var(--admin-gold-light);font-size:1.25rem;font-weight:800;margin-bottom:0.375rem;">01</div>
+              <div style="color:#fff;font-size:0.875rem;font-weight:600;margin-bottom:0.25rem;">Edit Content</div>
+              <div style="color:var(--admin-muted);font-size:0.8rem;">Use the sidebar modules to add, edit or remove content.</div>
+            </div>
+            <div style="padding:1rem;background:rgba(255,255,255,0.04);border-radius:0.5rem;border:1px solid rgba(255,255,255,0.06);">
+              <div style="color:var(--admin-gold-light);font-size:1.25rem;font-weight:800;margin-bottom:0.375rem;">02</div>
+              <div style="color:#fff;font-size:0.875rem;font-weight:600;margin-bottom:0.25rem;">Save to Firebase</div>
+              <div style="color:var(--admin-muted);font-size:0.8rem;">Changes are saved to Firestore database in real-time.</div>
+            </div>
+            <div style="padding:1rem;background:rgba(255,255,255,0.04);border-radius:0.5rem;border:1px solid rgba(255,255,255,0.06);">
+              <div style="color:var(--admin-gold-light);font-size:1.25rem;font-weight:800;margin-bottom:0.375rem;">03</div>
+              <div style="color:#fff;font-size:0.875rem;font-weight:600;margin-bottom:0.25rem;">Live on Site</div>
+              <div style="color:var(--admin-muted);font-size:0.8rem;">The public website instantly reflects all changes.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── NEWS PANEL ──────────────────────────────────── -->
+      <div id="panel-news" class="admin-panel" data-title="News &amp; Circulars">
+        <div class="panel-header">
+          <div>
+            <h2>News &amp; Circulars</h2>
+            <p>Manage the scrolling news ticker shown on the homepage.</p>
+          </div>
+          <button id="addNewsBtn" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add News Item
+          </button>
+        </div>
+        <div class="admin-card">
+          <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg></div>News Items</h3>
+          <div id="newsList"></div>
+        </div>
+      </div>
+
+      <!-- ── ADMISSION PANEL ─────────────────────────────── -->
+      <div id="panel-admission" class="admin-panel" data-title="Admission Notice">
+        <div class="panel-header">
+          <div>
+            <h2>Admission Notice</h2>
+            <p>Update the admission notification card shown on the homepage.</p>
+          </div>
+          <button id="saveAdmission" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save Changes
+          </button>
+        </div>
+        <div class="admin-card">
+          <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6z"/></svg></div>Notification Details</h3>
+          <div class="a-form-group">
+            <label for="admissionTitle">Notification Title</label>
+            <input type="text" id="admissionTitle" class="a-input" placeholder="e.g. ADMISSION NOTIFICATION 2026-27">
+          </div>
+          <div class="a-form-group">
+            <label for="admissionDocs">Required Documents <span style="color:var(--admin-muted);font-weight:400;">(one per line)</span></label>
+            <textarea id="admissionDocs" class="a-textarea" rows="10" placeholder="Birth Certificate of Municipal Corporation&#10;Candidate's Aadhaar Card&#10;..."></textarea>
+            <div class="field-hint">Each line becomes one document in the list.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TOPPERS PANEL ───────────────────────────────── -->
+      <div id="panel-toppers" class="admin-panel" data-title="School Toppers">
+        <div class="panel-header">
+          <div>
+            <h2>School Toppers</h2>
+            <p>Add or update student achievers displayed on the Student Corner page.</p>
+          </div>
+          <button id="addTopperBtn" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Topper
+          </button>
+        </div>
+        <div class="admin-card">
+          <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>Toppers List</h3>
+          <div id="toppersList"></div>
+        </div>
+      </div>
+
+      <!-- ── GALLERY PANEL ───────────────────────────────── -->
+      <div id="panel-gallery" class="admin-panel" data-title="Gallery">
+        <div class="panel-header">
+          <div>
+            <h2>Photo Gallery</h2>
+            <p>Add or remove photos. <span id="galleryCount" style="color:var(--admin-gold-light);font-weight:600;"></span></p>
+          </div>
+          <button id="addGalleryBtn" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Photo
+          </button>
+        </div>
+        <div class="admin-card">
+          <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>Photos</h3>
+          <div class="admin-gallery-grid" id="galleryAdminGrid"></div>
+        </div>
+      </div>
+
+      <!-- ── FACULTY PANEL ───────────────────────────────── -->
+      <div id="panel-faculty" class="admin-panel" data-title="Faculty List">
+        <div class="panel-header">
+          <div>
+            <h2>Faculty List</h2>
+            <p>Manage the list of teachers and staff shown on the Faculty page.</p>
+          </div>
+          <button id="addFacultyBtn" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Faculty
+          </button>
+        </div>
+        <div class="admin-card">
+          <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>Faculty Members</h3>
+          <div id="facultyList"></div>
+        </div>
+      </div>
+
+      <!-- ── PRINCIPAL PANEL ────────────────────────────── -->
+      <div id="panel-principal" class="admin-panel" data-title="Principal's Message">
+        <div class="panel-header">
+          <div>
+            <h2>Principal's Message</h2>
+            <p>Update the principal's profile and message displayed on the Academic page.</p>
+          </div>
+          <button id="savePrincipal" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save Changes
+          </button>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:1.5rem;align-items:start;">
+          <div class="admin-card">
+            <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>Profile</h3>
+            <img id="principalPhotoPreview" src="" alt="Principal" style="display:none;width:100%;border-radius:0.75rem;margin-bottom:1rem;aspect-ratio:3/4;object-fit:cover;object-position:top;border:2px solid var(--admin-gold);" onerror="this.style.display='none'">
+            <div class="a-form-group">
+              <label for="principalName">Full Name</label>
+              <input type="text" id="principalName" class="a-input" placeholder="Xavier Chandan Michael">
+            </div>
+            <div class="a-form-group">
+              <label for="principalTitle">Designation</label>
+              <input type="text" id="principalTitle" class="a-input" placeholder="Principal">
+            </div>
+            <div class="a-form-group">
+              <label for="principalPhoto">Photo URL</label>
+              <input type="url" id="principalPhoto" class="a-input" placeholder="https://...">
+              <div class="field-hint">Direct image URL for principal's photo</div>
+            </div>
+          </div>
+          <div class="admin-card">
+            <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>Message</h3>
+            <div class="a-form-group">
+              <label for="principalMsgTitle">Message Title</label>
+              <input type="text" id="principalMsgTitle" class="a-input" placeholder="NEP 2020 Will Bring the Desired Changes...">
+            </div>
+            <div class="a-form-group">
+              <label for="principalMessage">Message Body</label>
+              <textarea id="principalMessage" class="a-textarea" rows="14" placeholder="Write the principal's message here..."></textarea>
+              <div class="field-hint">Use plain paragraphs. Separate paragraphs with a blank line.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── HOURS PANEL ─────────────────────────────────── -->
+      <div id="panel-hours" class="admin-panel" data-title="School Hours">
+        <div class="panel-header">
+          <div>
+            <h2>School Hours</h2>
+            <p>Update school timing shown on the homepage and Student Corner.</p>
+          </div>
+          <button id="saveHours" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save Changes
+          </button>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+          <div class="admin-card">
+            <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>Regular Hours</h3>
+            <div class="a-form-group">
+              <label>Mon–Fri</label>
+              <input type="text" id="hours_regularWeekday" class="a-input" placeholder="7:45 AM – 1:40 PM">
+            </div>
+            <div class="a-form-group">
+              <label>Saturday</label>
+              <input type="text" id="hours_regularSaturday" class="a-input" placeholder="7:45 AM – 10:35 AM">
+            </div>
+          </div>
+          <div class="admin-card">
+            <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg></div>Summer Hours</h3>
+            <div class="a-form-group">
+              <label>Mon–Fri</label>
+              <input type="text" id="hours_summerWeekday" class="a-input" placeholder="6:45 AM – 12:00 PM">
+            </div>
+            <div class="a-form-group">
+              <label>Saturday</label>
+              <input type="text" id="hours_summerSaturday" class="a-input" placeholder="6:45 AM – 9:30 AM">
+            </div>
+          </div>
+          <div class="admin-card">
+            <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>Business Office</h3>
+            <div class="a-form-group">
+              <label>Mon–Fri</label>
+              <input type="text" id="hours_officeWeekday" class="a-input" placeholder="8:00 AM – 1:30 PM">
+            </div>
+            <div class="a-form-group">
+              <label>Saturday</label>
+              <input type="text" id="hours_officeSaturday" class="a-input" placeholder="8:00 AM – 10:30 AM">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CONTACT PANEL ───────────────────────────────── -->
+      <div id="panel-contact" class="admin-panel" data-title="Contact Details">
+        <div class="panel-header">
+          <div>
+            <h2>Contact Details</h2>
+            <p>Update phone numbers, emails, and address shown across the site.</p>
+          </div>
+          <button id="saveContact" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save Changes
+          </button>
+        </div>
+        <div class="admin-card">
+          <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.55 11"/></svg></div>Phone Numbers</h3>
+          <div class="form-row">
+            <div class="a-form-group">
+              <label>Main Phone / Fax</label>
+              <input type="text" id="contact_phone" class="a-input" placeholder="+91-6344-241029">
+            </div>
+            <div class="a-form-group">
+              <label>Principal Direct</label>
+              <input type="text" id="contact_principal" class="a-input" placeholder="9431454365">
+            </div>
+            <div class="a-form-group">
+              <label>Junior Section</label>
+              <input type="text" id="contact_juniorSection" class="a-input" placeholder="7667390821">
+            </div>
+            <div class="a-form-group">
+              <label>Senior Section</label>
+              <input type="text" id="contact_seniorSection" class="a-input" placeholder="9065757950">
+            </div>
+          </div>
+        </div>
+        <div class="admin-card">
+          <h3><div class="card-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg></div>Email &amp; Address</h3>
+          <div class="form-row">
+            <div class="a-form-group">
+              <label>Main Email</label>
+              <input type="email" id="contact_email" class="a-input" placeholder="info@stmichaeljamalpur.org">
+            </div>
+            <div class="a-form-group">
+              <label>Admin Email</label>
+              <input type="email" id="contact_adminEmail" class="a-input" placeholder="admin@stmichaeljamalpur.org">
+            </div>
+          </div>
+          <div class="a-form-group">
+            <label>Address</label>
+            <input type="text" id="contact_address" class="a-input" placeholder="Walipur Road, Jamalpur – 811214, Munger, Bihar">
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-main -->
+</div><!-- /dashboard -->
+
+<!-- ══════════════════════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════════════════════ -->
+
+<!-- News Modal -->
+<div id="newsModal" class="modal-backdrop">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="newsModalTitle">Add News Item</h3>
+      <button class="modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="a-form-group">
+      <label for="newsText">News / Circular Text</label>
+      <textarea id="newsText" class="a-textarea" rows="5" placeholder="Enter the news or circular text..."></textarea>
+      <div class="field-hint">This text will appear in the scrolling news ticker on the homepage.</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary modal-cancel">Cancel</button>
+      <button id="saveNewsItem" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Save Item
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Topper Modal -->
+<div id="topperModal" class="modal-backdrop">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="topperModalTitle">Add Topper</h3>
+      <button class="modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="form-row">
+      <div class="a-form-group">
+        <label for="topperRank">Rank</label>
+        <input type="text" id="topperRank" class="a-input" placeholder="e.g. 1st, 2nd, 3rd">
+      </div>
+      <div class="a-form-group">
+        <label for="topperClass">Class</label>
+        <input type="text" id="topperClass" class="a-input" placeholder="e.g. X, VIII">
+      </div>
+    </div>
+    <div class="a-form-group">
+      <label for="topperName">Student Name</label>
+      <input type="text" id="topperName" class="a-input" placeholder="Full name of the student">
+    </div>
+    <div class="a-form-group">
+      <label for="topperScore">Score / Achievement</label>
+      <input type="text" id="topperScore" class="a-input" placeholder="e.g. 98.6%, Top Rank">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary modal-cancel">Cancel</button>
+      <button id="saveTopperItem" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Save Topper
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery Modal -->
+<div id="galleryModal" class="modal-backdrop">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>Add Photo to Gallery</h3>
+      <button class="modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="a-form-group">
+      <label for="galleryUrl">Image URL *</label>
+      <input type="url" id="galleryUrl" class="a-input" placeholder="https://example.com/photo.jpg">
+      <div class="field-hint">Use a direct image URL (Google Drive share link, school server, Imgur, etc.)</div>
+    </div>
+    <img id="galleryPreview" src="" alt="Preview" style="display:none;width:100%;border-radius:0.5rem;margin:0.75rem 0;max-height:200px;object-fit:cover;border:1px solid var(--admin-border);" onerror="this.style.display='none'">
+    <div class="a-form-group">
+      <label for="galleryCaption">Caption</label>
+      <input type="text" id="galleryCaption" class="a-input" placeholder="e.g. Sports Day 2025, Annual Function...">
+    </div>
+    <div class="a-form-group">
+      <label for="galleryCategory">Category</label>
+      <select id="galleryCategory" class="a-select">
+        <option value="campus">Campus</option>
+        <option value="academic">Academic</option>
+        <option value="sports">Sports</option>
+        <option value="events">Events</option>
+        <option value="alumni">Alumni</option>
+        <option value="general">General</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary modal-cancel">Cancel</button>
+      <button id="saveGalleryItem" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Add Photo
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Faculty Modal -->
+<div id="facultyModal" class="modal-backdrop">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="facultyModalTitle">Add Faculty Member</h3>
+      <button class="modal-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="a-form-group">
+      <label for="facultyName">Full Name</label>
+      <input type="text" id="facultyName" class="a-input" placeholder="e.g. Mrs. Priya Sharma">
+    </div>
+    <div class="form-row">
+      <div class="a-form-group">
+        <label for="facultyDesignation">Designation</label>
+        <input type="text" id="facultyDesignation" class="a-input" placeholder="e.g. Teacher, HOD, Coach">
+      </div>
+      <div class="a-form-group">
+        <label for="facultyDepartment">Department / Subject</label>
+        <input type="text" id="facultyDepartment" class="a-input" placeholder="e.g. Mathematics, English">
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary modal-cancel">Cancel</button>
+      <button id="saveFacultyItem" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Save Member
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast Container ────────────────────────────────────── -->
+<div id="toastContainer" class="toast-container"></div>
+
+<!-- ── Firebase + Admin JS ─────────────────────────────────── -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

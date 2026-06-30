@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,11 +20,11 @@
         <div class="topbar-contacts">
           <span class="topbar-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.55 11a19.79 19.79 0 01-3.07-8.67A2 2 0 013.46 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            +91-6344-241029
+            <span data-contact="phone">+91-6344-241029</span>
           </span>
           <span class="topbar-item">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            info@stmichaeljamalpur.org
+            <span data-contact="email">info@stmichaeljamalpur.org</span>
           </span>
         </div>
         <div class="topbar-motto">
@@ -159,8 +159,8 @@
             </div>
             <h3>Regular Hours</h3>
             <div class="hours-list">
-              <div class="hours-row"><span>Mon–Fri</span><span>7:45 AM – 1:40 PM</span></div>
-              <div class="hours-row"><span>Saturday</span><span>7:45 AM – 10:35 AM</span></div>
+              <div class="hours-row"><span>Mon–Fri</span><span data-hours="regularWeekday">7:45 AM – 1:40 PM</span></div>
+              <div class="hours-row"><span>Saturday</span><span data-hours="regularSaturday">7:45 AM – 10:35 AM</span></div>
             </div>
           </div>
           <div class="hours-card">
@@ -169,8 +169,8 @@
             </div>
             <h3>Summer Hours</h3>
             <div class="hours-list">
-              <div class="hours-row"><span>Mon–Fri</span><span>6:45 AM – 12:00 PM</span></div>
-              <div class="hours-row"><span>Saturday</span><span>6:45 AM – 9:30 AM</span></div>
+              <div class="hours-row"><span>Mon–Fri</span><span data-hours="summerWeekday">6:45 AM – 12:00 PM</span></div>
+              <div class="hours-row"><span>Saturday</span><span data-hours="summerSaturday">6:45 AM – 9:30 AM</span></div>
             </div>
           </div>
           <div class="hours-card">
@@ -179,8 +179,8 @@
             </div>
             <h3>Business Office</h3>
             <div class="hours-list">
-              <div class="hours-row"><span>Mon–Fri</span><span>8:00 AM – 1:30 PM</span></div>
-              <div class="hours-row"><span>Saturday</span><span>8:00 AM – 10:30 AM</span></div>
+              <div class="hours-row"><span>Mon–Fri</span><span data-hours="officeWeekday">8:00 AM – 1:30 PM</span></div>
+              <div class="hours-row"><span>Saturday</span><span data-hours="officeSaturday">8:00 AM – 10:30 AM</span></div>
             </div>
           </div>
         </div>
@@ -194,7 +194,7 @@
           <span class="section-badge">Achievers</span>
           <h2 class="section-title">School Toppers</h2>
         </div>
-        <div class="toppers-grid">
+        <div class="toppers-grid" id="toppersGrid">
           <div class="topper-card" data-aos="fadeUp">
             <div class="topper-rank">🥇</div>
             <p class="topper-name">Outstanding Student</p>
@@ -253,11 +253,11 @@
         <div class="footer-col">
           <h3 class="footer-heading">Contact</h3>
           <div class="footer-contact">
-            <p><strong>Phone/Fax:</strong> +91-6344-241029</p>
-            <p><strong>Principal:</strong> 9431454365</p>
-            <p><strong>Junior Section:</strong> 7667390821</p>
-            <p><strong>Senior Section:</strong> 9065757950</p>
-            <p><strong>Email:</strong> info@stmichaeljamalpur.org</p>
+            <p><strong>Phone/Fax:</strong> <span data-contact="phone">+91-6344-241029</span></p>
+            <p><strong>Principal:</strong> <span data-contact="principal">9431454365</span></p>
+            <p><strong>Junior Section:</strong> <span data-contact="juniorSection">7667390821</span></p>
+            <p><strong>Senior Section:</strong> <span data-contact="seniorSection">9065757950</span></p>
+            <p><strong>Email:</strong> <span data-contact="email">info@stmichaeljamalpur.org</span></p>
           </div>
         </div>
         <div class="footer-col">
@@ -273,6 +273,9 @@
       </div>
     </div>
   </footer>
-  <script src="js/main.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
