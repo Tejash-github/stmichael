@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Photo gallery of St. Michael's High School, Jamalpur — events, activities, sports, and campus life.">
+  <title>Gallery — St. Michael's High School, Jamalpur</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="topbar-contacts">
+          <span class="topbar-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.55 11a19.79 19.79 0 01-3.07-8.67A2 2 0 013.46 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l1.28-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            +91-6344-241029
+          </span>
+          <span class="topbar-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            info@stmichaeljamalpur.org
+          </span>
+        </div>
+        <div class="topbar-motto">
+          <span class="motto-badge">❝ EVER TO LOVE AND TO SERVE ❞</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+          <div class="logo-circle">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M16 2L20 10L29 11L22.5 17.5L24 27L16 23L8 27L9.5 17.5L3 11L12 10L16 2Z" fill="#B8860B" stroke="#fff" stroke-width="0.5"/></svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-title">St. Michael's</span>
+            <span class="logo-subtitle">High School, Jamalpur</span>
+          </div>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-menu" id="navMenu">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="academic.html" class="nav-link">Academic</a></li>
+            <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+            <li><a href="student-corner.html" class="nav-link">Student Corner</a></li>
+            <li><a href="faculty.html" class="nav-link">Faculty</a></li>
+            <li><a href="https://cbseacademic.nic.in/" target="_blank" rel="noopener noreferrer" class="nav-link">CBSE</a></li>
+            <li><a href="alumni.html" class="nav-link">Alumni</a></li>
+            <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <span>Gallery</span>
+          </nav>
+          <span class="section-badge">Photo Gallery</span>
+          <h1>School Gallery</h1>
+          <p>Capturing memories, achievements, and the vibrant life at St. Michael's High School, Jamalpur.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Filter Tabs -->
+    <section class="content-section">
+      <div class="container">
+        <!-- Filter Buttons -->
+        <div style="display:flex;justify-content:center;gap:0.75rem;margin-bottom:2.5rem;flex-wrap:wrap;">
+          <button class="gallery-filter-btn active" data-filter="all" id="gf-all">All Photos</button>
+          <button class="gallery-filter-btn" data-filter="campus" id="gf-campus">Campus</button>
+          <button class="gallery-filter-btn" data-filter="academic" id="gf-academic">Academic</button>
+          <button class="gallery-filter-btn" data-filter="sports" id="gf-sports">Sports</button>
+          <button class="gallery-filter-btn" data-filter="events" id="gf-events">Events</button>
+          <button class="gallery-filter-btn" data-filter="alumni" id="gf-alumni">Alumni</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Campus images -->
+          <div class="gallery-item" data-category="campus">
+            <img src="https://stmichaeljamalpur.org/images/bg_1.jpg" alt="School campus view 1" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="campus">
+            <img src="https://stmichaeljamalpur.org/images/bg_2.jpg" alt="School campus view 2" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="campus">
+            <img src="https://stmichaeljamalpur.org/images/bg_3.jpg" alt="School campus view 3" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="campus">
+            <img src="https://stmichaeljamalpur.org/images/bg_4.jpg" alt="School campus view 4" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="campus">
+            <img src="https://stmichaeljamalpur.org/images/bg_5.jpg" alt="School campus view 5" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+
+          <!-- Academic images -->
+          <div class="gallery-item" data-category="academic">
+            <img src="https://stmichaeljamalpur.org/images/acad1.jpg" alt="Academic activity 1" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="academic">
+            <img src="https://stmichaeljamalpur.org/images/acad2.jpg" alt="Academic activity 2" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="academic">
+            <img src="https://stmichaeljamalpur.org/images/acad3.jpg" alt="Academic activity 3" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+
+          <!-- Facilities images -->
+          <div class="gallery-item" data-category="campus">
+            <img src="https://stmichaeljamalpur.org/images/fac1.jpg" alt="School facilities 1" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="campus">
+            <img src="https://stmichaeljamalpur.org/images/fac2.jpg" alt="School facilities 2" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="campus">
+            <img src="https://stmichaeljamalpur.org/images/fac3.jpg" alt="School facilities 3" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+
+          <!-- Alumni images -->
+          <div class="gallery-item" data-category="alumni">
+            <img src="https://stmichaeljamalpur.org/images/alum1.jpg" alt="Alumni gathering 1" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="alumni">
+            <img src="https://stmichaeljamalpur.org/images/alum2.jpg" alt="Alumni gathering 2" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+          <div class="gallery-item" data-category="alumni">
+            <img src="https://stmichaeljamalpur.org/images/alum3.jpg" alt="Alumni gathering 3" loading="lazy">
+            <div class="gallery-overlay">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <div class="logo-circle"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 2L20 10L29 11L22.5 17.5L24 27L16 23L8 27L9.5 17.5L3 11L12 10L16 2Z" fill="#B8860B" stroke="#fff" stroke-width="0.5"/></svg></div>
+            <div class="logo-text"><span class="logo-title">St. Michael's</span><span class="logo-subtitle">High School, Jamalpur</span></div>
+          </div>
+          <p class="footer-desc">Walipur Road, Jamalpur – 811214<br>Munger, Bihar, India</p>
+          <p class="footer-motto">❝ Ever to Love and to Serve ❞</p>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="academic.html">Academic</a></li>
+            <li><a href="facilities.html">Facilities</a></li>
+            <li><a href="student-corner.html">Student Corner</a></li>
+            <li><a href="faculty.html">Faculty</a></li>
+            <li><a href="alumni.html">Alumni</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-heading">Contact</h3>
+          <div class="footer-contact">
+            <p><strong>Phone/Fax:</strong> +91-6344-241029</p>
+            <p><strong>Principal:</strong> 9431454365</p>
+            <p><strong>Email:</strong> info@stmichaeljamalpur.org</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-heading">External Links</h3>
+          <ul class="footer-links">
+            <li><a href="https://cbseacademic.nic.in/" target="_blank">CBSE Official</a></li>
+            <li><a href="https://stmichael.nexterp.in/nlp/nlp/v1/fee/collect-fee?urlgroup=Fee#/" target="_blank">School ERP Portal</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="currentYear"></span> St. Michael's High School, Jamalpur. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .gallery-filter-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 1.5px solid #e5e7eb;
+      background: white;
+      color: #374151;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+    .gallery-filter-btn:hover, .gallery-filter-btn.active {
+      background: #0f2040;
+      color: white;
+      border-color: #0f2040;
+    }
+    .gallery-item[hidden] { display: none; }
+  </style>
+  <script src="js/main.js"></script>
+  <script>
+    // Gallery filter
+    const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+        galleryItems.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.removeAttribute('hidden');
+            item.style.display = '';
+          } else {
+            item.setAttribute('hidden', '');
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
