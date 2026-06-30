@@ -65,12 +65,18 @@ img { max-width: 100%; display: block; }
 .login-logo-icon {
   width: 52px;
   height: 52px;
-  background: linear-gradient(135deg, #0f2040, #1e3a70);
+  background: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid rgba(184,134,11,0.4);
+  overflow: hidden;
+}
+.login-logo-icon img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
 }
 .login-logo-text .title {
   font-size: 1.25rem;
@@ -209,13 +215,19 @@ img { max-width: 100%; display: block; }
 .sidebar-brand-icon {
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #162d58, #1e3a70);
+  background: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1.5px solid rgba(184,134,11,0.35);
   flex-shrink: 0;
+  overflow: hidden;
+}
+.sidebar-brand-icon img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
 }
 .sidebar-brand-text .name {
   font-size: 0.9375rem;
