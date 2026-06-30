@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /admin.css
+Disallow: /js/admin.js
+
+Sitemap: https://stmichaeljamalpur.org/sitemap.xml
