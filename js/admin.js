@@ -88,7 +88,7 @@ function showDashboard() {
 
 // ── Load All Data from Firestore ──────────────────────────────
 async function loadAllData() {
-  const sections = ['news','admission','toppers','gallery','hours','contact','faculty','principal'];
+  const sections = ['news','admission','toppers','gallery','hours','contact','faculty','principal','downloads'];
   for (const section of sections) {
     const data = await getData(section);
     if (data && data.items && Array.isArray(data.items)) {
@@ -134,6 +134,8 @@ function renderCurrentPanel() {
     case 'contact': renderContact(); break;
     case 'faculty': renderFaculty(); break;
     case 'principal': renderPrincipal(); break;
+    case 'downloads': renderDownloads(); break;
+    case 'inquiries': renderInquiries(); break;
   }
 }
 
@@ -534,6 +536,163 @@ document.getElementById('savePrincipal')?.addEventListener('click', async () => 
 const style = document.createElement('style');
 style.textContent = `@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} } .spin{animation:spin 1s linear infinite}`;
 document.head.appendChild(style);
+
+// ── DOWNLOADS ─────────────────────────────────────────────────
+function renderDownloads() {
+  const list = document.getElementById('downloadsList');
+  const items = state.downloads || [];
+  list.innerHTML = items.length === 0
+    ? `<p style="color:var(--admin-muted);text-align:center;padding:2rem">No download files added.</p>`
+    : items.map((d, i) => `
+      <div class="list-item">
+        <div class="list-item-content">
+          <div class="list-item-title">${d.title}</div>
+          <div class="list-item-sub">Size: ${d.size} • Link: ${d.url}</div>
+        </div>
+        <div class="list-item-actions">
+          <button class="btn-icon edit" onclick="editDownload(${i})">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="btn-icon delete" onclick="deleteDownload(${i})">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+          </button>
+        </div>
+      </div>
+    `).join('');
+}
+
+window.editDownload = function(i) {
+  editingItem = i;
+  const d = state.downloads[i];
+  document.getElementById('downloadsModalTitle').textContent = 'Edit Download File';
+  document.getElementById('downloadTitle').value = d.title;
+  document.getElementById('downloadUrl').value = d.url;
+  document.getElementById('downloadSize').value = d.size;
+  openModal('downloadsModal');
+};
+
+window.deleteDownload = async function(i) {
+  if (!confirm('Remove this download file?')) return;
+  state.downloads.splice(i, 1);
+  await saveSection('downloads', { items: state.downloads });
+  renderDownloads();
+};
+
+document.getElementById('addDownloadBtn')?.addEventListener('click', () => {
+  editingItem = null;
+  document.getElementById('downloadsModalTitle').textContent = 'Add Download File';
+  ['downloadTitle', 'downloadUrl', 'downloadSize'].forEach(id => document.getElementById(id).value = '');
+  openModal('downloadsModal');
+});
+
+document.getElementById('downloadUrl')?.addEventListener('blur', async (e) => {
+  const url = e.target.value.trim();
+  const sizeInput = document.getElementById('downloadSize');
+  if (!url || url === '#' || url.startsWith('javascript:')) return;
+  
+  // Set temporary indicator
+  if (sizeInput && !sizeInput.value) {
+    sizeInput.placeholder = 'Fetching size...';
+    try {
+      const res = await fetch(url, { method: 'HEAD' });
+      const size = res.headers.get('content-length');
+      if (size) {
+        const bytes = parseInt(size, 10);
+        let formattedSize = '';
+        if (bytes >= 1048576) formattedSize = `${(bytes / 1048576).toFixed(1)} MB`;
+        else formattedSize = `${(bytes / 1024).toFixed(0)} KB`;
+        
+        sizeInput.value = formattedSize;
+        toast('Retrieved file size dynamically!', 'info');
+      }
+    } catch (err) {
+      sizeInput.placeholder = 'e.g. 1.2 MB, 850 KB';
+    }
+  }
+});
+
+document.getElementById('saveDownloadItem')?.addEventListener('click', async () => {
+  const title = document.getElementById('downloadTitle').value.trim();
+  const url = document.getElementById('downloadUrl').value.trim();
+  const size = document.getElementById('downloadSize').value.trim();
+  if (!title || !url || !size) { toast('All fields are required.', 'error'); return; }
+  if (!state.downloads) state.downloads = [];
+  const entry = { id: Date.now(), title, url, size };
+  if (editingItem !== null) state.downloads[editingItem] = entry;
+  else state.downloads.push(entry);
+  await saveSection('downloads', { items: state.downloads });
+  closeModal('downloadsModal');
+  renderDownloads();
+});
+
+// ── INQUIRIES ─────────────────────────────────────────────────
+let inquiriesList = [];
+
+async function renderInquiries() {
+  const list = document.getElementById('inquiriesList');
+  list.innerHTML = `<p style="color:var(--admin-muted);text-align:center;padding:2rem"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="spin"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> Loading inquiries...</p>`;
+  
+  try {
+    const snap = await db.collection('admissionInquiries').orderBy('createdAt', 'desc').get();
+    inquiriesList = [];
+    snap.forEach(doc => {
+      inquiriesList.push({ id: doc.id, ...doc.data() });
+    });
+
+    if (inquiriesList.length === 0) {
+      list.innerHTML = `<p style="color:var(--admin-muted);text-align:center;padding:2rem">No inquiries received yet.</p>`;
+      return;
+    }
+
+    list.innerHTML = inquiriesList.map((inq, idx) => {
+      const dateStr = inq.createdAt?.toDate ? inq.createdAt.toDate().toLocaleString('en-IN') : 'Just now';
+      return `
+        <div class="list-item" style="display:block; padding:1.25rem; margin-bottom:1rem; border:1px solid rgba(255,255,255,0.06); border-radius:0.75rem; background:rgba(255,255,255,0.02);">
+          <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:0.75rem;">
+            <div>
+              <span class="badge" style="background:#b8860b; color:#fff; font-size:0.7rem; font-weight:700; padding:0.2rem 0.5rem; border-radius:0.25rem; text-transform:uppercase;">${inq.classSought}</span>
+              <h4 style="color:#fff; font-size:1.1rem; margin-top:0.25rem; font-weight:700;">${inq.studentName}</h4>
+            </div>
+            <button class="btn-icon delete" title="Delete Inquiry" onclick="deleteInquiry('${inq.id}')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+            </button>
+          </div>
+          
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; font-size:0.85rem; color:var(--admin-muted); margin-bottom:0.75rem;">
+            <div><strong>Date of Birth:</strong> ${inq.studentDob}</div>
+            <div><strong>Gender:</strong> ${inq.studentGender}</div>
+            <div><strong>Parent Name:</strong> ${inq.parentName}</div>
+            <div><strong>Phone Number:</strong> <a href="tel:${inq.parentPhone}" style="color:var(--admin-gold);text-decoration:none;">${inq.parentPhone}</a></div>
+            <div style="grid-column: span 2;"><strong>Email:</strong> <a href="mailto:${inq.parentEmail}" style="color:var(--admin-gold);text-decoration:none;">${inq.parentEmail}</a></div>
+            <div style="grid-column: span 2;"><strong>Address:</strong> ${inq.parentAddress}</div>
+            ${inq.inquiryMessage ? `<div style="grid-column: span 2; background:rgba(255,255,255,0.03); padding:0.5rem; border-radius:0.25rem; margin-top:0.25rem; color:#fff;"><strong>Comments:</strong> ${inq.inquiryMessage}</div>` : ''}
+          </div>
+
+          <div style="font-size:0.75rem; color:var(--admin-muted); text-align:right;">
+            Received: ${dateStr}
+          </div>
+        </div>
+      `;
+    }).join('');
+  } catch (err) {
+    list.innerHTML = `<p style="color:var(--admin-rose);text-align:center;padding:2rem">Failed to load inquiries: ${err.message}</p>`;
+  }
+}
+
+window.deleteInquiry = async function(id) {
+  if (!confirm('Are you sure you want to delete this inquiry?')) return;
+  try {
+    await db.collection('admissionInquiries').doc(id).delete();
+    toast('Inquiry deleted successfully!', 'success');
+    renderInquiries();
+  } catch (err) {
+    toast('Failed to delete inquiry: ' + err.message, 'error');
+  }
+};
+
+document.getElementById('refreshInquiries')?.addEventListener('click', () => {
+  renderInquiries();
+});
 
 // ── Boot ─────────────────────────────────────────────────────
 init();

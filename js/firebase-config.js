@@ -92,6 +92,14 @@ const DEFAULTS = {
     { id: 11, name: "History & Civics", designation: "Teacher", department: "History & Civics" },
     { id: 12, name: "Montessori Department", designation: "Teacher", department: "Early Childhood" }
   ],
+  downloads: [
+    { id: 1, title: "Academic Calendar 2026–27", url: "#", size: "1.2 MB" },
+    { id: 2, title: "School Prospectus", url: "#", size: "4.8 MB" },
+    { id: 3, title: "Holiday List 2026", url: "#", size: "850 KB" },
+    { id: 4, title: "Montessori Syllabus", url: "#", size: "1.5 MB" },
+    { id: 5, title: "Primary Syllabus (I–V)", url: "#", size: "2.1 MB" },
+    { id: 6, title: "Secondary Syllabus (VI–X)", url: "#", size: "2.6 MB" }
+  ],
   principal: {
     name: "Xavier Chandan Michael",
     title: "Principal",

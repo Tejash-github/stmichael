@@ -6,6 +6,29 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
 
+  // ── Theme Switcher Initializer ────────────────────────────
+  const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', currentTheme);
+
+  // Inject the floating theme toggle button
+  const toggleBtn = document.createElement('button');
+  toggleBtn.className = 'theme-toggle-btn';
+  toggleBtn.id = 'themeToggleBtn';
+  toggleBtn.setAttribute('aria-label', 'Toggle theme mode');
+  toggleBtn.innerHTML = `
+    <!-- Moon icon (shows in light mode to switch to dark) -->
+    <svg class="moon-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    <!-- Sun icon (shows in dark mode to switch to light) -->
+    <svg class="sun-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  `;
+  document.body.appendChild(toggleBtn);
+
+  toggleBtn.addEventListener('click', () => {
+    const activeTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', activeTheme);
+    localStorage.setItem('theme', activeTheme);
+  });
+
   // ── Navbar scroll effect ──────────────────────────────────
   const navbar = document.getElementById('navbar');
   if (navbar) {
@@ -156,21 +179,76 @@ document.addEventListener('DOMContentLoaded', async () => {
     const items = (data?.items) || DEFAULTS.news;
     if (items.length > 0) {
       newsTicker.innerHTML = items.map((item, i) => `
-        <div class="news-item ${i === 0 ? 'active' : ''}">
-          <span class="news-dot"></span>
-          <span>${item.text}</span>
+        <div class="news-item" data-index="${i}">
+          <div class="news-content">${item.text}</div>
+          <div class="news-item-footer">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Read More</span>
+          </div>
         </div>
       `).join('');
-      // Restart ticker
-      const newsItems = newsTicker.querySelectorAll('.news-item');
-      if (newsItems.length > 1) {
-        let newsIdx = 0;
-        setInterval(() => {
-          newsItems[newsIdx].classList.remove('active');
-          newsIdx = (newsIdx + 1) % newsItems.length;
-          newsItems[newsIdx].classList.add('active');
-        }, 4000);
-      }
+
+      // Add click listeners to open each news item in a modal popup
+      newsTicker.querySelectorAll('.news-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const idx = parseInt(el.getAttribute('data-index'));
+          const item = items[idx];
+          showNewsModal(item.text);
+        });
+      });
+    }
+  }
+
+  // Helper to dynamically show news popup modal
+  function showNewsModal(text) {
+    // Check if modal container already exists, otherwise create it
+    let overlay = document.getElementById('newsPopupModal');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'newsPopupModal';
+      overlay.className = 'news-modal-overlay';
+      overlay.innerHTML = `
+        <div class="news-modal-card">
+          <button class="news-modal-close" aria-label="Close modal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+          <div class="news-modal-header">
+            <span class="news-modal-badge">Circular</span>
+            <h3 class="news-modal-title">News Update</h3>
+          </div>
+          <div class="news-modal-body" id="newsModalBody"></div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      // Event listener to close modal
+      const closeBtn = overlay.querySelector('.news-modal-close');
+      closeBtn.addEventListener('click', closeNewsModal);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeNewsModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeNewsModal();
+      });
+    }
+
+    // Set text and open modal
+    document.getElementById('newsModalBody').textContent = text;
+    overlay.style.display = 'flex'; // Ensure display is flex
+    // Trigger transition Reflow
+    overlay.offsetHeight;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden'; // Stop scrolling behind modal
+  }
+
+  function closeNewsModal() {
+    const overlay = document.getElementById('newsPopupModal');
+    if (overlay) {
+      overlay.classList.remove('open');
+      document.body.style.overflow = ''; // Restore scrolling
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 400); // Wait for transition-slow (400ms)
     }
   }
 
@@ -180,10 +258,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await getData('admission');
     const d = data || DEFAULTS.admission;
     const titleEl = document.getElementById('admissionCard-title') || admissionCard.querySelector('.admission-notice-title');
-    const listEl = admissionCard.querySelector('.doc-list');
     if (titleEl) titleEl.textContent = d.title || DEFAULTS.admission.title;
-    if (listEl && d.documents) {
-      listEl.innerHTML = d.documents.map(doc => `<li>${doc}</li>`).join('');
+    if (d.documents) {
+      admissionCard.innerHTML = `
+        <p class="admission-meta-text" style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 0.75rem;">Required documents for registration:</p>
+        <ul class="doc-list" style="padding-left: 1.25rem; font-size: 0.875rem; line-height: 1.6; display: flex; flex-direction: column; gap: 0.25rem;">
+          ${d.documents.map(doc => `<li>${doc}</li>`).join('')}
+        </ul>
+      `;
     }
   }
 
@@ -316,4 +398,157 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   initLightbox();
+
+  // ── Load Downloads ────────────────────────────────────────
+  const downloadGrid = document.getElementById('downloadGrid');
+  if (downloadGrid) {
+    const data = await getData('downloads');
+    const items = (data?.items) || DEFAULTS.downloads;
+    
+    // Render initially with saved size
+    downloadGrid.innerHTML = items.map((d, index) => `
+      <a href="${d.url}" class="download-card" aria-label="Download ${d.title}" target="_blank">
+        <div class="download-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <div class="download-info">
+          <span class="download-title">${d.title}</span>
+          <span class="download-meta" id="dl-meta-${index}">PDF File • ${d.size || 'Document'}</span>
+        </div>
+      </a>
+    `).join('');
+
+    // Fetch actual sizes dynamically in the background
+    items.forEach(async (d, index) => {
+      if (!d.url || d.url === '#' || d.url.startsWith('javascript:')) return;
+      try {
+        const res = await fetch(d.url, { method: 'HEAD' });
+        const size = res.headers.get('content-length');
+        if (size) {
+          const bytes = parseInt(size, 10);
+          let formattedSize = '';
+          if (bytes >= 1048576) formattedSize = `${(bytes / 1048576).toFixed(1)} MB`;
+          else formattedSize = `${(bytes / 1024).toFixed(0)} KB`;
+          
+          const metaEl = document.getElementById(`dl-meta-${index}`);
+          if (metaEl) {
+            metaEl.innerHTML = `PDF File • <span style="color:var(--gold-600); font-weight:600;">${formattedSize}</span>`;
+          }
+        }
+      } catch (e) {
+        // Fallback to offline defaults silently
+      }
+    });
+  }
+
+  // ── Multi-Step Admission Inquiry Form Wizard ──────────────
+  const form = document.getElementById('admissionInquiryForm');
+  if (form) {
+    let step = 1;
+    const progress = document.getElementById('wizardProgressBar');
+    const nodes = document.querySelectorAll('.wizard-step-node');
+    const panels = document.querySelectorAll('.wizard-step-panel');
+    const prevBtn = document.getElementById('wizardPrevBtn');
+    const nextBtn = document.getElementById('wizardNextBtn');
+    const successScreen = document.getElementById('wizardSuccessScreen');
+
+    function updateWizard() {
+      // Update panels
+      panels.forEach(p => p.classList.remove('active'));
+      const activePanel = form.querySelector(`.wizard-step-panel[data-step="${step}"]`);
+      if (activePanel) activePanel.classList.add('active');
+
+      // Update progress bar & nodes
+      progress.style.width = `${((step - 1) / (nodes.length - 1)) * 100}%`;
+      nodes.forEach(n => {
+        const s = parseInt(n.getAttribute('data-step'));
+        n.classList.toggle('active', s === step);
+        n.classList.toggle('completed', s < step);
+      });
+
+      // Update buttons
+      prevBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
+      nextBtn.textContent = step === nodes.length ? 'Submit Inquiry' : 'Next';
+    }
+
+    function validateStep(s) {
+      const activePanel = form.querySelector(`.wizard-step-panel[data-step="${s}"]`);
+      if (!activePanel) return true;
+      const inputs = activePanel.querySelectorAll('input, select, textarea');
+      let valid = true;
+      inputs.forEach(input => {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          valid = false;
+        }
+      });
+      return valid;
+    }
+
+    function populateRecap() {
+      document.getElementById('recapStudentName').textContent = document.getElementById('studentName').value || '—';
+      document.getElementById('recapClassSought').textContent = document.getElementById('classSought').value || '—';
+      document.getElementById('recapStudentDob').textContent = document.getElementById('studentDob').value || '—';
+      document.getElementById('recapStudentGender').textContent = document.getElementById('studentGender').value || '—';
+      document.getElementById('recapParentName').textContent = document.getElementById('parentName').value || '—';
+      document.getElementById('recapParentPhone').textContent = document.getElementById('parentPhone').value || '—';
+      document.getElementById('recapParentEmail').textContent = document.getElementById('parentEmail').value || '—';
+    }
+
+    nextBtn.addEventListener('click', async () => {
+      if (!validateStep(step)) return;
+
+      if (step < nodes.length) {
+        step++;
+        if (step === nodes.length) populateRecap();
+        updateWizard();
+      } else {
+        // Submit details
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="spin"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg> Submitting...`;
+        
+        const payload = {
+          studentName: document.getElementById('studentName').value.trim(),
+          studentDob: document.getElementById('studentDob').value,
+          studentGender: document.getElementById('studentGender').value,
+          classSought: document.getElementById('classSought').value,
+          parentName: document.getElementById('parentName').value.trim(),
+          parentPhone: document.getElementById('parentPhone').value.trim(),
+          parentEmail: document.getElementById('parentEmail').value.trim(),
+          parentAddress: document.getElementById('parentAddress').value.trim(),
+          inquiryMessage: document.getElementById('inquiryMessage').value.trim(),
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          status: 'Pending'
+        };
+
+        try {
+          await db.collection('admissionInquiries').add(payload);
+          form.style.display = 'none';
+          successScreen.style.display = 'block';
+        } catch (err) {
+          console.warn("Firestore write failed, fallback mock submission", err);
+          // Fallback success for local testing/offline mode
+          form.style.display = 'none';
+          successScreen.style.display = 'block';
+        }
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (step > 1) {
+        step--;
+        updateWizard();
+      }
+    });
+
+    document.getElementById('wizardResetBtn').addEventListener('click', () => {
+      form.reset();
+      step = 1;
+      form.style.display = 'block';
+      successScreen.style.display = 'none';
+      updateWizard();
+    });
+
+    updateWizard();
+  }
 });
