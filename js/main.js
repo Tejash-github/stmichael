@@ -381,20 +381,33 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (principalSection) {
     const data = await getData('principal');
     const p = data || DEFAULTS.principal;
-    const nameEl = principalSection.querySelector('.principal-name');
-    const titleEl = principalSection.querySelector('.principal-title');
-    const photoEl = principalSection.querySelector('.principal-photo');
-    const msgTitleEl = principalSection.querySelector('.principal-msg-title');
-    const msgBodyEl = principalSection.querySelector('.principal-msg-body');
-    const signEl = principalSection.querySelector('.message-sign');
-    if (nameEl) nameEl.textContent = p.name;
-    if (titleEl) titleEl.textContent = p.title;
-    if (photoEl && p.photoUrl) { photoEl.src = p.photoUrl; photoEl.alt = p.name; }
-    if (msgTitleEl) msgTitleEl.textContent = p.messageTitle;
-    if (msgBodyEl && p.message) {
-      msgBodyEl.innerHTML = p.message.split('\n').filter(l => l.trim()).map(para => `<p>${para}</p>`).join('');
-    }
-    if (signEl) signEl.textContent = `Happy Learning! — ${p.name}, ${p.title}`;
+    principalSection.innerHTML = `
+      <div class="principal-card" data-aos="fadeRight">
+        <img src="${p.photoUrl || 'images/chandm.jpg'}" 
+             alt="${p.name}, Principal" 
+             class="principal-photo"
+             onerror="this.style.display='none'">
+        <p class="principal-name" style="font-family:var(--font-display); font-size:1.125rem; font-weight:700; color:var(--navy-800); margin-top:0.75rem;">${p.name}</p>
+        <p class="principal-title" style="font-size:0.875rem; color:var(--gold-600); font-weight:600;">${p.title}</p>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--color-border);">
+          <p style="font-size: 0.75rem; color: var(--color-muted);">Contact (Working Days)</p>
+          <p style="font-size: 0.875rem; font-weight: 600; color: var(--color-text);"><span data-contact="principal">9431454365</span></p>
+          <p style="font-size: 0.75rem; color: var(--color-muted);">10:00 AM – 1:00 PM only</p>
+        </div>
+      </div>
+      <div class="principal-message" data-aos="fadeLeft">
+        <h2 class="principal-msg-title" style="font-family:var(--font-display); font-size:1.5rem; color:var(--navy-800); margin-bottom:0.5rem; line-height:1.3;">${p.messageTitle}</h2>
+        <p class="message-subtitle" style="font-size:0.875rem; color:var(--gold-600); font-weight:600; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:1.5rem;">A Message from Our Principal</p>
+        <div class="principal-msg-body" style="font-size:0.9375rem; color:var(--gray-600); line-height:1.7; display:flex; flex-direction:column; gap:1rem;">
+          ${p.message.split('\n').filter(l => l.trim()).map(para => `<p>${para}</p>`).join('')}
+        </div>
+        <p class="message-sign" style="font-family:var(--font-display); font-size:1.125rem; color:var(--navy-800); font-style:italic; margin-top:1.5rem; text-align:right;">Happy Learning! — ${p.name}, ${p.title}</p>
+      </div>
+    `;
+    // Re-observe AOS
+    principalSection.querySelectorAll('[data-aos]').forEach(el => {
+      window.aosObserver?.observe(el);
+    });
   }
 
   initLightbox();
