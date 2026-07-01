@@ -121,6 +121,9 @@
           <span class="section-badge">For Students</span>
           <h1>Student Corner</h1>
           <p>Your one-stop hub for class notes, homework, assignments, online exams, fee payment and more.</p>
+          <div style="margin-top: 1.5rem;">
+            <a href="#admission-inquiry" class="btn btn-primary btn-lg" style="background:var(--gold-500); color:var(--navy-900); font-weight:700; border-color:var(--gold-400); display:inline-inline-block;">Online Admission Inquiry</a>
+          </div>
         </div>
       </div>
     </section>
@@ -186,6 +189,41 @@
         </div>
       </div>
     </section>
+    <!-- Notice Board & Download Center -->
+    <section class="content-section alt-bg">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-badge">Downloads</span>
+          <h2 class="section-title">Notice Board & Resources</h2>
+          <p style="color:var(--gray-500);max-width:600px;margin:0 auto;">Access key academic resources, calendar lists, syllabi, and official school notifications in downloadable PDF format.</p>
+        </div>
+        
+        <div class="download-grid" id="downloadGrid">
+          <div class="download-card">
+            <div class="skeleton-loader" style="width:44px; height:44px; border-radius:8px; flex-shrink:0;"></div>
+            <div style="flex-grow:1;">
+              <div class="skeleton-loader skeleton-text" style="width:70%; height:12px; margin-bottom:8px;"></div>
+              <div class="skeleton-loader skeleton-text" style="width:40%; height:10px;"></div>
+            </div>
+          </div>
+          <div class="download-card">
+            <div class="skeleton-loader" style="width:44px; height:44px; border-radius:8px; flex-shrink:0;"></div>
+            <div style="flex-grow:1;">
+              <div class="skeleton-loader skeleton-text" style="width:65%; height:12px; margin-bottom:8px;"></div>
+              <div class="skeleton-loader skeleton-text" style="width:35%; height:10px;"></div>
+            </div>
+          </div>
+          <div class="download-card">
+            <div class="skeleton-loader" style="width:44px; height:44px; border-radius:8px; flex-shrink:0;"></div>
+            <div style="flex-grow:1;">
+              <div class="skeleton-loader skeleton-text" style="width:75%; height:12px; margin-bottom:8px;"></div>
+              <div class="skeleton-loader skeleton-text" style="width:45%; height:10px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!-- School Hours (repeated in student corner) -->
     <section class="hours-section">
@@ -237,33 +275,179 @@
           <h2 class="section-title">School Toppers</h2>
         </div>
         <div class="toppers-grid" id="toppersGrid">
-          <div class="topper-card" data-aos="fadeUp">
-            <div class="topper-rank">🥇</div>
-            <p class="topper-name">Outstanding Student</p>
-            <p class="topper-score">Class X — Top Rank</p>
+          <div class="topper-card">
+            <div class="skeleton-loader skeleton-circle" style="width:36px; height:36px; margin:0 auto 1rem;"></div>
+            <div class="skeleton-loader skeleton-text" style="width:80%; height:12px; margin:0 auto 0.5rem;"></div>
+            <div class="skeleton-loader skeleton-text" style="width:50%; height:10px; margin:0 auto;"></div>
           </div>
-          <div class="topper-card" data-aos="fadeUp" data-aos-delay="100">
-            <div class="topper-rank">🥈</div>
-            <p class="topper-name">Meritorious Scholar</p>
-            <p class="topper-score">Class X — 2nd Rank</p>
+          <div class="topper-card">
+            <div class="skeleton-loader skeleton-circle" style="width:36px; height:36px; margin:0 auto 1rem;"></div>
+            <div class="skeleton-loader skeleton-text" style="width:75%; height:12px; margin:0 auto 0.5rem;"></div>
+            <div class="skeleton-loader skeleton-text" style="width:45%; height:10px; margin:0 auto;"></div>
           </div>
-          <div class="topper-card" data-aos="fadeUp" data-aos-delay="200">
-            <div class="topper-rank">🥉</div>
-            <p class="topper-name">Academic Excellence</p>
-            <p class="topper-score">Class X — 3rd Rank</p>
-          </div>
-          <div class="topper-card" data-aos="fadeUp" data-aos-delay="300">
-            <div class="topper-rank" style="font-size:1.5rem;color:#0f2040;">4</div>
-            <p class="topper-name">High Achiever</p>
-            <p class="topper-score">Class VIII — Top Rank</p>
-          </div>
-          <div class="topper-card" data-aos="fadeUp" data-aos-delay="400">
-            <div class="topper-rank" style="font-size:1.5rem;color:#0f2040;">5</div>
-            <p class="topper-name">Star Performer</p>
-            <p class="topper-score">Class VIII — 2nd Rank</p>
+          <div class="topper-card">
+            <div class="skeleton-loader skeleton-circle" style="width:36px; height:36px; margin:0 auto 1rem;"></div>
+            <div class="skeleton-loader skeleton-text" style="width:85%; height:12px; margin:0 auto 0.5rem;"></div>
+            <div class="skeleton-loader skeleton-text" style="width:55%; height:10px; margin:0 auto;"></div>
           </div>
         </div>
         <p style="text-align:center;color:#6b7280;font-size:0.875rem;margin-top:1.5rem;">* Updated results will be displayed after board examinations.</p>
+      </div>
+    </section>
+    <!-- Online Admission Inquiry Form Section -->
+    <section class="content-section inquiry-section" id="admission-inquiry">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-badge">Admissions 2026–27</span>
+          <h2 class="section-title">Online Admission Inquiry</h2>
+          <p style="color:var(--gray-500);max-width:600px;margin:0 auto;">Submit an inquiry for your child's admission. Follow the steps below to complete the registration details.</p>
+        </div>
+
+        <div class="wizard-container">
+          <!-- Progress Bar -->
+          <div class="wizard-progress">
+            <div class="wizard-progress-bar" id="wizardProgressBar"></div>
+            <div class="wizard-step-node active" data-step="1">1</div>
+            <div class="wizard-step-node" data-step="2">2</div>
+            <div class="wizard-step-node" data-step="3">3</div>
+          </div>
+
+          <!-- Wizard Form -->
+          <form id="admissionInquiryForm" novalidate>
+            <!-- STEP 1: Student Information -->
+            <div class="wizard-step-panel active" data-step="1">
+              <h3 style="font-family:var(--font-display); font-size:1.25rem; color:var(--navy-800); margin-bottom:1.5rem; text-align:center;">Step 1: Student Information</h3>
+              
+              <div class="form-group">
+                <label for="studentName">Student Full Name <span style="color:var(--rose-600);">*</span></label>
+                <input type="text" id="studentName" class="admin-input" placeholder="Enter student's full name" required>
+              </div>
+              
+              <div class="form-group" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4);">
+                <div>
+                  <label for="studentDob">Date of Birth <span style="color:var(--rose-600);">*</span></label>
+                  <input type="date" id="studentDob" class="admin-input" required>
+                </div>
+                <div>
+                  <label for="studentGender">Gender <span style="color:var(--rose-600);">*</span></label>
+                  <select id="studentGender" class="admin-input" required>
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="classSought">Class / Grade Sought <span style="color:var(--rose-600);">*</span></label>
+                <select id="classSought" class="admin-input" required>
+                  <option value="" disabled selected>Select target class</option>
+                  <option value="Montessori">Montessori</option>
+                  <option value="LKG">L.K.G.</option>
+                  <option value="UKG">U.K.G.</option>
+                  <option value="Class I">Class I</option>
+                  <option value="Class II">Class II</option>
+                  <option value="Class III">Class III</option>
+                  <option value="Class IV">Class IV</option>
+                  <option value="Class V">Class V</option>
+                  <option value="Class VI">Class VI</option>
+                  <option value="Class VII">Class VII</option>
+                  <option value="Class VIII">Class VIII</option>
+                  <option value="Class IX">Class IX</option>
+                  <option value="Class X">Class X</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- STEP 2: Parent / Guardian Information -->
+            <div class="wizard-step-panel" data-step="2">
+              <h3 style="font-family:var(--font-display); font-size:1.25rem; color:var(--navy-800); margin-bottom:1.5rem; text-align:center;">Step 2: Parent &amp; Contact Details</h3>
+              
+              <div class="form-group">
+                <label for="parentName">Parent / Guardian Full Name <span style="color:var(--rose-600);">*</span></label>
+                <input type="text" id="parentName" class="admin-input" placeholder="Enter parent's full name" required>
+              </div>
+
+              <div class="form-group" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-4);">
+                <div>
+                  <label for="parentPhone">Contact Phone Number <span style="color:var(--rose-600);">*</span></label>
+                  <input type="tel" id="parentPhone" class="admin-input" placeholder="10-digit mobile number" required pattern="[0-9]{10}">
+                </div>
+                <div>
+                  <label for="parentEmail">Email Address <span style="color:var(--rose-600);">*</span></label>
+                  <input type="email" id="parentEmail" class="admin-input" placeholder="Enter email address" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="parentAddress">Residential Address <span style="color:var(--rose-600);">*</span></label>
+                <textarea id="parentAddress" class="admin-input" rows="3" placeholder="Enter complete home address" required></textarea>
+              </div>
+            </div>
+
+            <!-- STEP 3: Review & Submit -->
+            <div class="wizard-step-panel" data-step="3">
+              <h3 style="font-family:var(--font-display); font-size:1.25rem; color:var(--navy-800); margin-bottom:1.5rem; text-align:center;">Step 3: Review Details</h3>
+              
+              <div class="wizard-recap-grid">
+                <div class="recap-item">
+                  <span class="recap-label">Student Name</span>
+                  <span class="recap-val" id="recapStudentName">—</span>
+                </div>
+                <div class="recap-item">
+                  <span class="recap-label">Class Sought</span>
+                  <span class="recap-val" id="recapClassSought">—</span>
+                </div>
+                <div class="recap-item">
+                  <span class="recap-label">Date of Birth</span>
+                  <span class="recap-val" id="recapStudentDob">—</span>
+                </div>
+                <div class="recap-item">
+                  <span class="recap-label">Gender</span>
+                  <span class="recap-val" id="recapStudentGender">—</span>
+                </div>
+                <div class="recap-item">
+                  <span class="recap-label">Parent Name</span>
+                  <span class="recap-val" id="recapParentName">—</span>
+                </div>
+                <div class="recap-item">
+                  <span class="recap-label">Phone Number</span>
+                  <span class="recap-val" id="recapParentPhone">—</span>
+                </div>
+                <div class="recap-item" style="grid-column: span 2;">
+                  <span class="recap-label">Email Address</span>
+                  <span class="recap-val" id="recapParentEmail">—</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inquiryMessage">Additional Comments / Specific Questions (Optional)</label>
+                <textarea id="inquiryMessage" class="admin-input" rows="2" placeholder="Any specific requirements or queries?"></textarea>
+              </div>
+              
+              <div style="font-size:0.75rem; color:var(--gray-500); text-align:center; margin-top:1rem;">
+                By submitting, you agree to receive follow-up communication regarding admission status.
+              </div>
+            </div>
+
+            <!-- Wizard Navigation Buttons -->
+            <div class="wizard-buttons">
+              <button type="button" class="btn btn-outline" id="wizardPrevBtn" style="padding: 0.6rem 1.2rem; font-size: 0.875rem; visibility: hidden;">Back</button>
+              <button type="button" class="btn btn-primary" id="wizardNextBtn" style="padding: 0.6rem 1.5rem; font-size: 0.875rem; background:var(--navy-800); color:white;">Next</button>
+            </div>
+          </form>
+
+          <!-- Success Screen (Hidden by default) -->
+          <div id="wizardSuccessScreen" class="success-screen" style="display:none;">
+            <div class="success-icon-box">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3 style="font-family:var(--font-display); font-size:1.5rem; color:var(--navy-800); margin-bottom:0.75rem;">Inquiry Submitted Successfully!</h3>
+            <p style="font-size:0.875rem; color:var(--gray-600); max-width:420px; margin:0 auto 1.5rem; line-height:1.5;">Thank you for your interest in St. Michael's High School. We have received your inquiry details and will contact you via phone or email within 2-3 working days.</p>
+            <button type="button" class="btn btn-outline" id="wizardResetBtn" style="padding: 0.6rem 1.2rem; font-size: 0.875rem;">Submit Another Inquiry</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
