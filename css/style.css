@@ -2586,7 +2586,11 @@ select {
 }
 
 [data-theme="dark"] .logo-title {
-  color: var(--white);
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .logo-subtitle {
+  color: var(--gray-400) !important;
 }
 
 [data-theme="dark"] .menu-toggle span {
@@ -2600,6 +2604,133 @@ select {
 [data-theme="dark"] .nav-menu {
   background: var(--navy-900);
   border-color: var(--color-border);
+}
+
+/* Dark Mode Color Contrast Overrides */
+[data-theme="dark"] .memorial-card,
+[data-theme="dark"] .officials-card,
+[data-theme="dark"] .student-feature-card,
+[data-theme="dark"] .content-card,
+[data-theme="dark"] .about-feature,
+[data-theme="dark"] .social-link,
+[data-theme="dark"] .alumni-form {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+
+[data-theme="dark"] .memorial-card h3,
+[data-theme="dark"] .officials-card h3,
+[data-theme="dark"] .student-feature-card h3,
+[data-theme="dark"] .content-card h3,
+[data-theme="dark"] .about-feature h3,
+[data-theme="dark"] .social-link-content h3,
+[data-theme="dark"] .alumni-form h2,
+[data-theme="dark"] .wizard-step-panel h3 {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .officials-role,
+[data-theme="dark"] .memorial-lifespan,
+[data-theme="dark"] .memorial-role {
+  color: var(--gold-300) !important;
+}
+
+[data-theme="dark"] .memorial-role {
+  background: rgba(240, 192, 64, 0.1) !important;
+}
+
+[data-theme="dark"] .memorial-bio,
+[data-theme="dark"] .about-feature p {
+  color: var(--color-muted) !important;
+}
+
+[data-theme="dark"] select option {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+/* Principal Section Overrides */
+[data-theme="dark"] #principalSection .principal-name,
+[data-theme="dark"] #principalSection .principal-msg-title,
+[data-theme="dark"] #principalSection .message-sign {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] #principalSection .principal-title,
+[data-theme="dark"] #principalSection .message-subtitle {
+  color: var(--gold-300) !important;
+}
+
+[data-theme="dark"] #principalSection .principal-msg-body p {
+  color: var(--gray-400) !important;
+}
+
+/* Section Title Contrast Overrides */
+[data-theme="dark"] .section-title {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .hours-section .section-title {
+  color: #ffffff !important;
+}
+
+/* Hours Card Title Lock */
+.hours-card h3 {
+  color: #ffffff !important;
+}
+
+/* Quick Card Overrides */
+[data-theme="dark"] .quick-card {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+[data-theme="dark"] .quick-card h3 {
+  color: var(--color-text) !important;
+}
+[data-theme="dark"] .quick-icon {
+  background: rgba(240, 192, 64, 0.1) !important;
+  color: var(--gold-300) !important;
+}
+
+/* Facility Card Overrides */
+[data-theme="dark"] .facility-card {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+[data-theme="dark"] .facility-card h3 {
+  color: var(--color-text) !important;
+}
+
+/* Toppers and Faculty Overrides */
+[data-theme="dark"] .topper-card,
+[data-theme="dark"] .faculty-card {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+[data-theme="dark"] .topper-name,
+[data-theme="dark"] .faculty-card h3 {
+  color: var(--color-text) !important;
+}
+
+/* Download Size Override */
+[data-theme="dark"] .download-meta span {
+  color: var(--gold-300) !important;
+}
+
+/* Contact CTA Overrides */
+[data-theme="dark"] .cta-content h2 {
+  color: #ffffff !important;
+}
+
+/* Footer Heading Overrides */
+[data-theme="dark"] .footer-heading {
+  color: #ffffff !important;
+}
+
+/* In Memoriam Section Background Override */
+[data-theme="dark"] .memorial-section {
+  background: linear-gradient(135deg, #090e1a 0%, #030712 100%) !important;
+  border-bottom-color: var(--color-border) !important;
 }
 
 /* ── Floating Theme Toggle Widget ────────────────────────────── */
